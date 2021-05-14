@@ -1,5 +1,8 @@
 # pokefinder
 
+### Mockup
+Figma Mockup [link](https://www.figma.com/file/Rb33g6GmLZ68IFZekVD8tm/Poke-Finder?node-id=46%3A0).
+
 ## Project setup
 ```
 yarn install
