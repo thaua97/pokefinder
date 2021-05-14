@@ -3,9 +3,23 @@
     color $text
     font-weight 500
     font-size 1.5rem
-    background #F4F4F4
+    background $button
     border-radius .25rem
     transition filter .5s ease-in-out
 
     &:hover
-        filter brightness(110%)
+        filter drop-shadow(0 0 0.3rem $black-glass)
+
+    &--active
+        background $shield.default
+        color $light-glass
+
+    &--high
+        margin-top 2rem
+        height 4rem
+
+    &--disabled
+        color $black-glass
+        pointer-events none
+        cursor not-allowed
+

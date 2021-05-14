@@ -1,5 +1,5 @@
 <template>
-  <Toolbar :back="backGeneration" />
+  <Toolbar back="/" />
   <div class="pf-container pf-align pf-align--left">
     <div>
       <h1 class="pf-tile">{{ infos?.name }}</h1>
@@ -64,12 +64,7 @@ export default {
       infos: {},
     };
   },
-  computed: {
-    ...mapGetters("pokemons", ["getPokemon"]),
-    backGeneration() {
-      return `/${this.$route.params.id}/generation`;
-    },
-  },
+  computed: {...mapGetters("pokemons", ["getPokemon"])},
 
   created() {
     if (!this.getPokemon.name) {

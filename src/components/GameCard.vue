@@ -26,3 +26,7 @@ export default {
     }
 }
 </script>
+<style lang="stylus" scoped>
+h1
+    color #fff
+</style>

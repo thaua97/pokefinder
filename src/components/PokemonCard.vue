@@ -1,18 +1,25 @@
 <template>
     <router-link
-        :to="{name: 'Pokemon', params: {name: name, id: gen}}"
+        :to="{name: 'Pokemon', params: {name: infos.name, id: gen}}"
         @click="setPokemonOnState"
     >
         <div :class="`pf-card pf-color--shape`">
             <div class="pf-card pf-card__content pf-card__content--line">
                 <img
+                    v-if="infos.sprites"
                     class="pf-card pf-card__poke"
                     :src="infos?.sprites?.front_default"
                     :alt="name"
                 />
+                <img
+                    v-else
+                    class="pf-card pf-card__not-found"
+                    src="../assets/logo_transparent.png"
+                    alt="not found"
+                />
                 <div>
-                    <h1 class="pf-subheading">{{ name }}</h1>
-                    <div class="pf-tips">
+                    <h1 class="pf-subheading">{{ infos.name || 'Not found' }}</h1>
+                    <div class="pf-tips" v-if="infos?.types">
                         <div
                             :class="`pf-tip pf-tip--small pf-color--${item.type.name}`"
                             v-for="item in infos.types"
@@ -35,14 +42,9 @@ export default {
     name: 'PokemonCard',
 
     props: {
-        name: {
-            type: String,
-            required: true
-        },
-        gen: {
-            type: String,
-            required: true
-        }
+        pokemon: Object,
+        name: String,
+        gen: String
     },
 
     data() {
@@ -50,7 +52,11 @@ export default {
     },
 
     created() {
-        this.fetchPokemonByName(this.name);
+        if(this.pokemon) {
+            this.infos = this.pokemon;
+        } else {
+            this.fetchPokemonByName(this.name);
+        }
     },
 
     methods: {

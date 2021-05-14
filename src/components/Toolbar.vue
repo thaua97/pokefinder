@@ -2,7 +2,7 @@
   <header class="pf-toolbar">
     <img class="pf-toolbar__logo" alt="Vue logo" src="../assets/logo.png" />
     <router-link v-if="checkHome" class="pf-btn" :to="back">
-      voltar
+      back
     </router-link>
   </header>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="pf-container">
+    <div class="pf-container pf-container--main">
         <ul class="pf-list">
             <div v-for="(item, index) in generations" :key="item.id">
                 <GameCard :name="item.name" :index="index + 1"/>
@@ -36,7 +36,6 @@ export default {
                 const {data: res} = await game.getVersionGroups();
 
                 this.games = res.results;
-                console.log(this.games);
             } catch (error) {
                 console.error(error)
             }
@@ -49,7 +48,6 @@ export default {
                 const {data: res} = await games.getGeneration();
 
                 this.generations = res.results;
-                console.log(this.games);
             } catch (error) {
                 console.error(error)
             }

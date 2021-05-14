@@ -3,11 +3,11 @@
     <div class="pf-container pf-align pf-align--left">
         <h1 class="pf-title">{{generation}}</h1>
         <div class="pf-align pf-align--column">
-            <h1 class="pf-heading">Geração</h1>
+            <h1 class="pf-heading">Generation</h1>
             <ul>
-                <li class="pf-subheading">Sua região principal é <strong>{{ region}}</strong></li>
-                <li class="pf-subheading">Possui <strong>{{ pokemons.length }} pokemons</strong></li>
-                <li class="pf-subheading">Adicionou <strong>{{ typesNumber }} novos tipos</strong> de pokemons</li>
+                <li class="pf-subheading">This principal region is <strong>{{ region}}</strong></li>
+                <li class="pf-subheading">And has <strong>{{ pokemons.length }} pokemons</strong></li>
+                <li class="pf-subheading" v-if="typesNumber > 0">Added <strong>{{ typesNumber }} pokemons</strong> new types</li>
             </ul>
         </div>
     </div>
@@ -22,9 +22,10 @@
 </template>
 
 <script>
+import api from '@/services/api';
+
 import Toolbar from '@/components/Toolbar.vue';
 import PokemonCard from '@/components/PokemonCard.vue';
-import api from '@/services/api';
 
 export default {
     name: 'Generation',
@@ -46,7 +47,6 @@ export default {
         typesNumber() {
             return this.types.length;
         }
-
     },
 
     created() {
@@ -59,12 +59,9 @@ export default {
 
             try {
                 const {data: res} = await gen.getGenerationById(id);
-
                 this.pokemons = res.pokemon_species
                 this.region = res.main_region.name
                 this.types = res.types;
-
-                console.log(res);
             } catch (error) {
                 console.error(error);
             }

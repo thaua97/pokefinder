@@ -15,7 +15,7 @@ const routes = [
     component: Generation
   },
   {
-    path: '/:id/generation/pokemon/:name',
+    path: '/pokemon/:name',
     name: 'Pokemon',
     component: Pokemon
   },
